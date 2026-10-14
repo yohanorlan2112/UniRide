@@ -10,7 +10,7 @@
 
 ###  Seguridad e Identidad Estudiantil
 * **Registro validado:** Captura de documento de identidad, código estudiantil y correo institucional (arquitectura preparada para conexión con API universitaria de validación de carnet y fotografía).
-* **Sistema Dual de Roles (Switch en Vivo):** Un mismo estudiante puede alternar con un solo clic entre **Modo Pasajero 🎒** y **Modo Conductor ** sin necesidad de crear cuentas separadas.
+* **Sistema Dual de Roles (Switch en Vivo):** Un mismo estudiante puede alternar con un solo clic entre **Modo Pasajero ** y **Modo Conductor ** sin necesidad de crear cuentas separadas.
 * **Gestión de Perfil Contextual:** Visualización y edición de datos personales adaptada al rol activo del usuario.
 
 ###  Módulo de Pasajero
@@ -33,7 +33,7 @@
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+##  Tecnologías Utilizadas
 
 | Capa | Tecnología |
 | :--- | :--- |
@@ -45,7 +45,7 @@
 
 ---
 
-## ⚙️ Requisitos Previos
+##  Requisitos Previos
 
 * **PHP** >= 8.2 (con las extensiones `pdo_pgsql` y `pgsql` habilitadas en `php.ini`)
 * **Composer**
@@ -101,7 +101,7 @@ Accede desde tu navegador a: **`http://127.0.0.1:8000`**
 
 ---
 
-## 📂 Estructura Clave del Proyecto
+##  Estructura Clave del Proyecto
 
 ```text
 app/
@@ -128,7 +128,7 @@ app/
 
 ---
 
-## 🔮 Próximas Mejoras (Roadmap)
+##  Próximas Mejoras (Roadmap)
 
 * [ ] **Integración con API Institucional:** Validación automática del código estudiantil activo y carga de fotografía oficial del carnet universitario.
 * [ ] **Verificación Documental:** Carga y validación de documentos del vehículo (SOAT, Tecnomecánica y Licencia de Conducción).
@@ -136,8 +136,8 @@ app/
 
 ---
 
-## 👨‍💻 Autores
-Yohan Orlando Perez Jimenez 
-Jose Manuel Perez Paez
-Osdania Martines Amaya 
+##  Autores
+Yohan Orlando Perez Jimenez , 
+Jose Manuel Perez Paez ,
+Osdania Martines Amaya  
 Proyecto académico desarrollado para optimizar la movilidad estudiantil universitaria.
