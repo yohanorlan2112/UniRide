@@ -1,59 +1,143 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+#  UniRide — Plataforma de Movilidad Estudiantil Compartida
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> *"Conecta tu ruta, comparte el camino."*
 
-## About Laravel
+**UniRide** es una aplicación web de *carpooling* universitario diseñada para conectar a estudiantes que se desplazan hacia el campus universitario (**Sede Principal** y **Sede La Primavera**). La plataforma permite compartir vehículos de forma segura, económica y colaborativa dentro de una comunidad exclusivamente estudiantil.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+##  Características Principales
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+###  Seguridad e Identidad Estudiantil
+* **Registro validado:** Captura de documento de identidad, código estudiantil y correo institucional (arquitectura preparada para conexión con API universitaria de validación de carnet y fotografía).
+* **Sistema Dual de Roles (Switch en Vivo):** Un mismo estudiante puede alternar con un solo clic entre **Modo Pasajero 🎒** y **Modo Conductor ** sin necesidad de crear cuentas separadas.
+* **Gestión de Perfil Contextual:** Visualización y edición de datos personales adaptada al rol activo del usuario.
 
-## Learning Laravel
+###  Módulo de Pasajero
+* **Puntos de Recogida Geolocalizados:** Creación, edición y eliminación de paradas exactas mediante un mapa interactivo (**Leaflet + OpenStreetMap**), definiendo días, hora de salida y aporte económico para gasolina.
+* **Radar de Compatibilidad Matemática:** Algoritmo basado en la **Fórmula de Haversine** que calcula la distancia real en kilómetros entre el pasajero y las rutas activas de los conductores, mostrando un porcentaje de compatibilidad (`0%` a `100%`) y los cupos libres en tiempo real.
+* **Gestión de Viajes:** Seguimiento del estado de las solicitudes (`Pendiente`, `Aceptado`, `Rechazado`, `Cancelado`, `Realizado`) con bloqueo inteligente contra solicitudes duplicadas.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+###  Módulo de Conductor
+* **Mi Garaje (Gestión de Vehículos):** Registro, edición y eliminación de vehículos con reglas de negocio automáticas para la capacidad de cupos:
+  *  **Moto:** Máximo **1 pasajero**.
+  *  **Carro:** Entre **1 y 3 pasajeros**.
+* **Trazado de Rutas:** Publicación de rutas en el mapa vinculadas a un vehículo específico, días de la semana y horarios de circulación.
+* ** Mapa de Calor de Demanda (`Leaflet.heat`):** Visualización térmica en tiempo real de las zonas donde se concentran más pasajeros esperando transporte, con filtro por sede universitaria y opción para **trazar una ruta directamente desde una zona roja de alta demanda**.
+* **Control de Solicitudes y Cupos:** Aceptación o rechazo de pasajeros validando automáticamente la capacidad disponible del vehículo asignado a la ruta.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+###  Sistema de Reputación Mutua
+* **Calificación Bidireccional:** Al finalizar un viaje (`Realizado`), tanto el pasajero como el conductor pueden calificarse mutuamente de **1 a 5 estrellas** y dejar una reseña.
+* **Promedio en Tiempo Real:** Visualización de la reputación promedio del conductor en el Radar y del pasajero en las Solicitudes Recibidas.
+* **Historial de Reseñas:** Apartado dedicado (` Mis Reseñas`) donde el estudiante consulta su puntuación promedio como conductor y como pasajero junto con los comentarios recibidos.
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🛠️ Tecnologías Utilizadas
 
-### Premium Partners
+| Capa | Tecnología |
+| :--- | :--- |
+| **Backend** | PHP 8.2+, Laravel 12 |
+| **Base de Datos** | PostgreSQL (Arquitectura relacional personalizada gestionada en pgAdmin 4) |
+| **Frontend & UI** | Blade Templates, Tailwind CSS (Diseño *Mobile-First*), Google Fonts (`Montserrat` & `Roboto`) |
+| **Mapas y Geolocalización** | Leaflet.js, OpenStreetMap, Leaflet.heat |
+| **Autenticación y Seguridad** | Laravel Auth personalizado (`usuarios`), Middlewares de rol (`es.conductor`, `es.pasajero`) |
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## ⚙️ Requisitos Previos
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+* **PHP** >= 8.2 (con las extensiones `pdo_pgsql` y `pgsql` habilitadas en `php.ini`)
+* **Composer**
+* **PostgreSQL** >= 14 y **pgAdmin 4**
+* Servidor local (XAMPP / Laragon / Herd)
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+##  Instalación y Configuración
 
-## Security Vulnerabilities
+### 1. Clonar el repositorio e instalar dependencias
+```bash
+git clone [https://github.com/yohanorlan2112/UniRide.git]
+cd uniride
+composer install
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 2. Configurar las variables de entorno
+Copia el archivo `.env.example` a `.env` y configura la conexión a **PostgreSQL** y el controlador de sesiones en archivo:
 
-## License
+```env
+APP_NAME=UniRide
+APP_URL=http://127.0.0.1:8000
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=uniride_db
+DB_USERNAME=postgres
+DB_PASSWORD=tu_contrasena
+
+SESSION_DRIVER=file
+```
+
+### 3. Preparar la Base de Datos en PostgreSQL
+1. Abre **pgAdmin 4** y crea una base de datos llamada **`uniride_db`**.
+2. Ejecuta el script SQL del esquema relacional del proyecto para crear las tablas (`usuarios`, `roles`, `roles_usuarios`, `perfiles_conductores`, `perfiles_pasajeros`, `vehiculos`, `rutas_conductores`, `horarios_rutas`, `solicitudes_pasajeros`, `horarios_solicitudes`, `viajes`, `calificaciones`, `dias_semana`, `ubicaciones`).
+3. Asegúrate de tener insertados los roles base (`conductor`, `pasajero`) en la tabla `roles` y los días de la semana en `dias_semana`.
+
+### 4. Generar llave de aplicación y limpiar caché
+```bash
+php artisan key:generate
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+```
+
+### 5. Iniciar el servidor de desarrollo
+```bash
+php artisan serve
+```
+Accede desde tu navegador a: **`http://127.0.0.1:8000`**
+
+---
+
+## 📂 Estructura Clave del Proyecto
+
+```text
+app/
+├── Http/
+│   ├── Controllers/
+│   │   ├── AuthController.php          # Login, Registro con código estudiantil y Logout
+│   │   ├── PerfilController.php        # Switch Conductor/Pasajero y gestión de datos personales
+│   │   ├── VehiculoController.php      # CRUD de vehículos y validación de cupos (Moto=1, Carro=3)
+│   │   ├── RutaConductorController.php # CRUD de rutas geolocalizadas y Mapa de Calor
+│   │   ├── SolicitudController.php     # CRUD de puntos de recogida del pasajero
+│   │   ├── MatchController.php         # Radar de compatibilidad con Fórmula de Haversine
+│   │   ├── ViajeController.php         # Ciclo de vida del viaje y control de asientos disponibles
+│   │   └── CalificacionController.php  # Evaluación mutua (1-5 estrellas) e historial de reseñas
+│   └── Middleware/
+│       ├── EsConductor.php             # Protección de rutas exclusivas de conductores
+│       └── EsPasajero.php              # Protección de rutas exclusivas de pasajeros
+└── Models/
+    ├── Usuario.php                     # Modelo de autenticación principal y cálculo de reputación
+    ├── PerfilConductor.php / PerfilPasajero.php
+    ├── Vehiculo.php / RutaConductor.php
+    ├── SolicitudPasajero.php / Viaje.php
+    └── Calificacion.php
+```
+
+---
+
+## 🔮 Próximas Mejoras (Roadmap)
+
+* [ ] **Integración con API Institucional:** Validación automática del código estudiantil activo y carga de fotografía oficial del carnet universitario.
+* [ ] **Verificación Documental:** Carga y validación de documentos del vehículo (SOAT, Tecnomecánica y Licencia de Conducción).
+* [ ] **Rastreo GPS en Vivo:** Actualización en tiempo real de la ubicación del vehículo durante el trayecto activo.
+
+---
+
+## 👨‍💻 Autores
+Yohan Orlando Perez Jimenez 
+Jose Manuel Perez Paez
+Osdania Martines Amaya 
+Proyecto académico desarrollado para optimizar la movilidad estudiantil universitaria.
